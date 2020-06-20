@@ -19,6 +19,14 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: Integer,
+    default: 3,
+  },
+  status: {
+    type: Integer,
+    default: 1,
+  },
   subject_taken: [
     {
       type: ObjectId,
