@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Student = require('./Student');
+const { ObjectId } = mongoose.Schema.Types;
 
 const SujectSchema = new mongoose.Schema({
   name: {
@@ -18,6 +20,12 @@ const SujectSchema = new mongoose.Schema({
   other_links: {
     type: String,
   },
+  students: [
+    {
+      type: ObjectId,
+      ref: Student,
+    },
+  ],
 });
 
 module.exports = Subject = mongoose.model('Subject', SujectSchema);

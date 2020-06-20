@@ -27,10 +27,20 @@ const StudentSchema = new mongoose.Schema({
     type: Integer,
     default: 1,
   },
-  subject_taken: [
+  subjects: [
     {
       type: ObjectId,
       ref: Subject,
+    },
+  ],
+  subject_taken: [
+    {
+      subject: {
+        id: String,
+      },
+      status: {
+        type: Integer,
+      },
     },
   ],
 });
