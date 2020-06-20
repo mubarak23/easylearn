@@ -11,13 +11,13 @@ const SujectSchema = new mongoose.Schema({
     type: Text,
     required: true,
   },
-  video_link: {
+  video_url: {
     type: String,
   },
-  image_link: {
+  image_url: {
     type: String,
   },
-  other_links: {
+  other_url: {
     type: String,
   },
   students: [
