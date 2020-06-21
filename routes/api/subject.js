@@ -21,3 +21,19 @@ router.post(async (req, res) => {
 });
 
 
+// @route    PUT api/subject
+// @desc     Update a Subject
+// @access   Private
+router.put('/subject/:id', (req, res) =>{
+  const subjectId = req.params.id,
+  const subject_data = req.body
+  try{
+    const updatesubject = await updatesubject(subject_data, subjectId);
+  }catch (err) {
+    console.log(err);
+    return res.status(500).send('internal server error');
+  }
+})
+
+
+
