@@ -1,4 +1,5 @@
 import Subject, { create } from '../models/Subject';
+import { json } from 'body-parser';
 
 export const createSubject = (subject_data) => {
   const { name, content, image_url, other_url, video_url } = subject_data;
@@ -14,7 +15,7 @@ export const createSubject = (subject_data) => {
   return createSubject.save();
 };
 
-export const update = (subject_data, subjectId) => {
+export const updateSubjects = (subject_data, subjectId) => {
   Subject.findOne({ _id: subjectId }).then((user) => {
     if (!subject) {
       return res.status(422).json({ error: 'Subject no found' });
@@ -32,4 +33,15 @@ export const update = (subject_data, subjectId) => {
         return res.json({ err });
       });
   });
+};
+
+export const allSubjects = () => {
+  Subject.find()
+    .then((subjects) => {
+      return subjects;
+    })
+    .catch((err) => {
+      console.log(err);
+      return json({ err });
+    });
 };
