@@ -1,4 +1,4 @@
-import Subject, { create } from '../models/Subject';
+import Subject from '../models/Subject';
 import { json } from 'body-parser';
 
 export const createSubject = (subject_data) => {
@@ -27,10 +27,10 @@ export const updateSubjects = (subject_data, subjectId) => {
     subject
       .save()
       .then((subject) => {
-        return res.json({ message: 'subject details updated successfully' });
+        return json({ message: 'subject details updated successfully' });
       })
       .catch((err) => {
-        return res.json({ err });
+        return json({ err });
       });
   });
 };
