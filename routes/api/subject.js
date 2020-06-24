@@ -5,7 +5,7 @@ const { createSubject, updateSubjects,allSubjects } = require('../../services/Su
 // @route    POST api/posts
 // @desc     Create a Subject
 // @access   Private
-router.post(async (req, res) => {
+router.post('/subject', async (req, res) => {
   const { name, content, image_url, other_url, video_url } = req.body;
   if (!name || !content || !image_url) {
     return resizeBy.status(422).json({ error: 'Please filled all field' });
@@ -24,7 +24,7 @@ router.post(async (req, res) => {
 // @route    PUT api/subject
 // @desc     Update a Subject
 // @access   Private
-router.put('/subject/:id', (req, res) =>{
+router.put('/subject/:id', async (req, res) =>{
   const subjectId = req.params.id,
   const subject_data = req.body
   try{
