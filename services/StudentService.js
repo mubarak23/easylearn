@@ -1,4 +1,4 @@
-import Student from '../models/Student';
+const Student = require('../models/Student');
 //import Subject from '../models/Subject';
 
 export const takeSubject = (studentId, subjectId) => {
@@ -11,6 +11,7 @@ export const takeSubject = (studentId, subjectId) => {
     studentId,
     {
       $push: { subject_taken: subjectTaken },
+      $push: { subjects: subjectId },
     },
     {
       new: true,
