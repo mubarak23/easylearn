@@ -49,14 +49,16 @@ router.post('/signup', async (req, res) => {
     let existsUser = Student.findOne({ email });
     if (existsUser) {
       return res.status(400).json({ message: 'User Exists' });
-      const newStudent = new Student({
-        name,
-        email,
-        password,
-        school,
-      });
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(password, salt);
     }
+    const newStudent = new Student({
+      name,
+      email,
+      password,
+      school,
+    });
+    const salt = await bcrypt.genSalt(10);
+    newStudent.password = await bcrypt.hash(password, salt);
+    await newStudent.save();
+    res.json({ message: 'saved successfully' });
   } catch (err) {}
 });
