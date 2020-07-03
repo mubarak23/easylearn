@@ -16,7 +16,7 @@ export const createSubject = (subject_data) => {
 };
 
 export const updateSubjects = (subject_data, subjectId) => {
-  Subject.findOne({ _id: subjectId }).then((user) => {
+  Subject.findOne({ _id: subjectId }).then((subject) => {
     if (!subject) {
       return res.status(422).json({ error: 'Subject no found' });
     }

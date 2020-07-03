@@ -1,5 +1,4 @@
 const Student = require('../models/Student');
-//import Subject from '../models/Subject';
 
 export const takeSubject = (studentId, subjectId) => {
   const subjectTaken = {
