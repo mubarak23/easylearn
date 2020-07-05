@@ -20,3 +20,4 @@ const AdminSchema = new mongoose.Schema({
     default: 3,
   },
 });
+module.exports = Admin = mongoose.model('Admin', AdminSchema);
