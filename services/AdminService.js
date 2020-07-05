@@ -5,7 +5,7 @@ const Subject = require('../models/Subject');
 export const DeleteSubject = (id) => {
   Subject.findById({ _id: id }).then((subject) => {
     if (!subject) {
-      return json({ message: 'subject does not exist' });
+      return false;
     }
     subject.remove().then((result) => {
       return json(result);
