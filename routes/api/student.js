@@ -68,10 +68,10 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// @route    Get api/completeSubject
+// @route    Post api/signin
 // @desc     complete a suject
 // @access   Public
-router.post('/sigin', async (req, res) => {
+router.post('/signin', async (req, res) => {
   const { email, password } = req.body;
   try {
     let existsUser = Student.findOne({ email });
