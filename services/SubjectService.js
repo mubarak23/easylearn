@@ -1,5 +1,4 @@
-import Subject from '../models/Subject';
-import { json } from 'body-parser';
+const Subject = require('../models/Subject');
 
 export const createSubject = (subject_data) => {
   const { name, content, image_url, other_url, video_url } = subject_data;

@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { createSubject, updateSubjects,allSubjects } = require('../../services/SubjectService');
+const {
+  createSubject,
+  updateSubjects,
+  allSubjects,
+} = require('../../services/SubjectService');
 
 // @route    POST api/posts
 // @desc     Create a Subject
@@ -20,32 +24,29 @@ router.post('/subject', async (req, res) => {
   }
 });
 
-
 // @route    PUT api/subject
 // @desc     Update a Subject
 // @access   Private
-router.put('/subject/:id', async (req, res) =>{
-  const subjectId = req.params.id,
-  const subject_data = req.body
-  try{
+router.put('/subject/:id', async (req, res) => {
+  const subjectId = req.params.id;
+  const subject_data = req.body;
+  try {
     const updatesubject = await updateSubjects(subject_data, subjectId);
-  }catch (err) {
+  } catch (err) {
     console.log(err);
     return res.status(500).send('internal server error');
   }
-})
+});
 
 // @route    Get api/subject
 // @desc     Fetch all Subject
 // @access   Private
-router.get('/subjects', (req, res) =>{
-  try{
+router.get('/subjects', async (req, res) => {
+  try {
     const allSubjects = await allSubjects();
-    return res.status(200).json({allSubjects})
-  }catch(err){
-    console.log(err)
+    return res.status(200).json({ allSubjects });
+  } catch (err) {
+    console.log(err);
     return res.status(500).send('internal server error');
   }
-})
-
-
+});
