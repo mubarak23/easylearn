@@ -7,7 +7,7 @@ const StudentSchema = new mongoose.Schema({
     required: true,
   },
   email: {
-    type: email,
+    type: String,
     required: true,
     unique: true,
   },
@@ -20,11 +20,11 @@ const StudentSchema = new mongoose.Schema({
     required: true,
   },
   role: {
-    type: Integer,
+    type: Number,
     default: 3,
   },
   status: {
-    type: Integer,
+    type: Number,
     default: 1,
   },
   subjects: [
