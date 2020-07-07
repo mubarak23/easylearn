@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {
-  createSubject,
   updateSubjects,
   allSubjects,
 } = require('../../services/SubjectService');
@@ -15,8 +14,14 @@ router.post('/subject', async (req, res) => {
     return resizeBy.status(422).json({ error: 'Please filled all field' });
   }
   try {
-    const subjectdata = req.body;
-    const newsubject = await createSubject(subjectdata);
+    const createSubject = new Subject({
+      name,
+      content,
+      image_url,
+      video_url,
+      other_url,
+    });
+    const newsubject = createSubject.save();
     return res.status(201).json(newsubject);
   } catch (err) {
     console.log(err);

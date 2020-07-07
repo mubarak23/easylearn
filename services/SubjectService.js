@@ -1,6 +1,7 @@
+const express = require('express');
 const Subject = require('../models/Subject');
 
-export const createSubject = (subject_data) => {
+const createSubject = (subject_data) => {
   const { name, content, image_url, other_url, video_url } = subject_data;
   //move to route
 
@@ -14,7 +15,7 @@ export const createSubject = (subject_data) => {
   return createSubject.save();
 };
 
-export const updateSubjects = (subject_data, subjectId) => {
+const updateSubjects = (subject_data, subjectId) => {
   Subject.findOne({ _id: subjectId }).then((subject) => {
     if (!subject) {
       return res.status(422).json({ error: 'Subject no found' });
@@ -34,7 +35,7 @@ export const updateSubjects = (subject_data, subjectId) => {
   });
 };
 
-export const allSubjects = () => {
+const allSubjects = () => {
   Subject.find()
     .then((subjects) => {
       return subjects;
@@ -44,3 +45,5 @@ export const allSubjects = () => {
       return json({ err });
     });
 };
+
+module.exports = { createSubject, updateSubjects, allSubjects };
