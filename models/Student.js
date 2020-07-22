@@ -40,7 +40,7 @@ const StudentSchema = new mongoose.Schema({
         id: String,
       },
       status: {
-        type: Integer,
+        type: Boolean,
       },
     },
   ],
