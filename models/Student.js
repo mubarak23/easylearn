@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
-
+const Subject = require('./Subject');
 const StudentSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -33,6 +33,7 @@ const StudentSchema = new mongoose.Schema({
       ref: Subject,
     },
   ],
+
   subject_taken: [
     {
       subject: {
@@ -45,4 +46,5 @@ const StudentSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = Student = mongoose.model('Student', StudentSchema);
+const Student = mongoose.model('Student', StudentSchema);
+module.exports = Student;
