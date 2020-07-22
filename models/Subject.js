@@ -8,7 +8,7 @@ const SujectSchema = new mongoose.Schema({
     required: true,
   },
   content: {
-    type: Text,
+    type: String,
     required: true,
   },
   video_url: {
