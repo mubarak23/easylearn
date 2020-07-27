@@ -8,7 +8,12 @@ const {
 // @route    POST api/posts
 // @desc     Create a Subject
 // @access   Private
-router.post('/subject', async (req, res) => {
+router.get('/', async (req, res) => {
+  return 'Good Here';
+});
+
+router.post('/', async (req, res) => {
+  return res.json(req.body);
   const { name, content, image_url, other_url, video_url } = req.body;
   if (!name || !content || !image_url) {
     return resizeBy.status(422).json({ error: 'Please filled all field' });
