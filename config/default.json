@@ -1,4 +1,4 @@
 {
-  "mongoURI": "",
+  "mongoURI": "mongodb://root:root123@ds263848.mlab.com:63848/zone",
   "jwtSecret": "secret"
 }
