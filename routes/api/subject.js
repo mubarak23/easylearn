@@ -10,7 +10,7 @@ const {
 // @access   Private
 
 router.post('/subject', async (req, res) => {
-  return res.json(req.body);
+  //return res.json(req.body);
   const { name, content, image_url, other_url, video_url } = req.body;
   if (!name || !content || !image_url) {
     return resizeBy.status(422).json({ error: 'Please filled all field' });
