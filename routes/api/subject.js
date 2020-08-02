@@ -8,9 +8,6 @@ const {
 // @route    POST api/posts
 // @desc     Create a Subject
 // @access   Private
-router.get('/', async (req, res) => {
-  return 'Good Here';
-});
 
 router.post('/', async (req, res) => {
   //return res.json(req.body);
@@ -34,24 +31,11 @@ router.post('/', async (req, res) => {
   }
 });
 
-// @route    PUT api/subject
-// @desc     Update a Subject
-// @access   Private
-router.put('/subject/:id', async (req, res) => {
-  const subjectId = req.params.id;
-  const subject_data = req.body;
-  try {
-    const updatesubject = await updateSubjects(subject_data, subjectId);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send('internal server error');
-  }
-});
-
 // @route    Get api/subject
 // @desc     Fetch all Subject
 // @access   Private
-router.get('/subjects', async (req, res) => {
+router.get('/d', async (req, res) => {
+  return 'this is the first point';
   try {
     const allSubjects = Subject.find()
       .then((subjects) => {
@@ -62,6 +46,20 @@ router.get('/subjects', async (req, res) => {
         return json({ err });
       });
     return res.status(200).json({ allSubjects });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send('internal server error');
+  }
+});
+
+// @route    PUT api/subject
+// @desc     Update a Subject
+// @access   Private
+router.put('/subject/:id', async (req, res) => {
+  const subjectId = req.params.id;
+  const subject_data = req.body;
+  try {
+    const updatesubject = await updateSubjects(subject_data, subjectId);
   } catch (err) {
     console.log(err);
     return res.status(500).send('internal server error');

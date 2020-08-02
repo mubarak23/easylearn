@@ -11,8 +11,9 @@ const app = express();
 connectDB();
 
 // Init Middleware
-app.use(express.json({ extended: false }));
+//app.use(express.json({ extended: false }));
 
+//setup the middlware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -26,10 +27,13 @@ app.use(function (req, res, next) {
 });
 
 //route endpoints
-app.use('/api/subject', require('./routes/api/subject'));
-router.get('/', async (req, res) => {
-  return 'Good Here';
+
+app.get('/', function () {
+  return 'Welcome Sturborn server';
 });
+
+app.use('/api/subject', require('./routes/api/subject'));
+
 //port selection
 const PORT = process.env.PORT || 5000;
 
