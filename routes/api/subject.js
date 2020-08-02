@@ -9,8 +9,8 @@ const {
 // @desc     Create a Subject
 // @access   Private
 
-router.post('/', async (req, res) => {
-  //return res.json(req.body);
+router.post('/subject', async (req, res) => {
+  return res.json(req.body);
   const { name, content, image_url, other_url, video_url } = req.body;
   if (!name || !content || !image_url) {
     return resizeBy.status(422).json({ error: 'Please filled all field' });
@@ -34,8 +34,8 @@ router.post('/', async (req, res) => {
 // @route    Get api/subject
 // @desc     Fetch all Subject
 // @access   Private
-router.get('/d', async (req, res) => {
-  return 'this is the first point';
+router.get('/subject', async (req, res) => {
+  return res.json('this is the first point');
   try {
     const allSubjects = Subject.find()
       .then((subjects) => {
