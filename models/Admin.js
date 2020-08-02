@@ -17,7 +17,7 @@ const AdminSchema = new mongoose.Schema({
   },
   level: {
     type: Boolean,
-    default: 3,
+    default: 1,
   },
 });
 module.exports = Admin = mongoose.model('Admin', AdminSchema);

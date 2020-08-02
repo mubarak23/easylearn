@@ -27,7 +27,9 @@ app.use(function (req, res, next) {
 
 //route endpoints
 app.use('/api/subject', require('./routes/api/subject'));
-
+router.get('/', async (req, res) => {
+  return 'Good Here';
+});
 //port selection
 const PORT = process.env.PORT || 5000;
 

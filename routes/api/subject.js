@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  return res.json(req.body);
+  //return res.json(req.body);
   const { name, content, image_url, other_url, video_url } = req.body;
   if (!name || !content || !image_url) {
     return resizeBy.status(422).json({ error: 'Please filled all field' });
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
       video_url,
       other_url,
     });
-    const newsubject = createSubject.save();
+    const newsubject = await createSubject.save();
     return res.status(201).json(newsubject);
   } catch (err) {
     console.log(err);
@@ -53,7 +53,14 @@ router.put('/subject/:id', async (req, res) => {
 // @access   Private
 router.get('/subjects', async (req, res) => {
   try {
-    const allSubjects = await allSubjects();
+    const allSubjects = Subject.find()
+      .then((subjects) => {
+        return subjects;
+      })
+      .catch((err) => {
+        console.log(err);
+        return json({ err });
+      });
     return res.status(200).json({ allSubjects });
   } catch (err) {
     console.log(err);
