@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Subject = require('../../models/Subject');
 const {
   updateSubjects,
   allSubjects,
@@ -10,10 +11,9 @@ const {
 // @access   Private
 
 router.post('/subject', async (req, res) => {
-  //return res.json(req.body);
   const { name, content, image_url, other_url, video_url } = req.body;
   if (!name || !content || !image_url) {
-    return resizeBy.status(422).json({ error: 'Please filled all field' });
+    return res.status(422).json({ error: 'Please filled all field' });
   }
   try {
     const createSubject = new Subject({
