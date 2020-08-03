@@ -7,7 +7,7 @@ const Subject = require('../../models/Subject');
 // @route     api/deleteSubject
 // @desc     remove a subject
 // @access   Private (add require login as middlware)
-router.get('deleteSubject/:subjectId', async (req, res) => {
+router.get('/deleteSubject/:subjectId', async (req, res) => {
   try {
     const deleteSubject = Subject.findById(req.params.subjectId);
     if (!deleteSubject) {

@@ -6,8 +6,8 @@ const Student = require('../../models/Student');
 // @route    Get api/takeSubject
 // @desc     student taken a suject
 // @access   Private (add require login as middlware)
-router.get('student/:studentId/:subjectId', async (req, res) => {
-  return res.json(req.param.studentId);
+router.get('/takeStudent/:studentId/:subjectId', async (req, res) => {
+  return res.json(req.params.subjectId);
   try {
     const takesubject = takeSubject(req.params.studentId, req.params.subjectId);
     return res.status(201).json({ takesubject });
@@ -20,7 +20,7 @@ router.get('student/:studentId/:subjectId', async (req, res) => {
 // @route    Get api/completeSubject
 // @desc     complete a suject
 // @access   Private (add require login as middlware)
-router.get('takeSuject/:studentId/:subjectId', async (req, res) => {
+router.get('/completeSuject/:studentId/:subjectId', async (req, res) => {
   try {
     const takesubject = completeSubject(
       req.params.studentId,
@@ -33,10 +33,11 @@ router.get('takeSuject/:studentId/:subjectId', async (req, res) => {
   }
 });
 
-// @route    Get api/completeSubject
+// @route    Get api/student signup
 // @desc     complete a suject
 // @access   Public
 router.post('/signup', async (req, res) => {
+  return res.json('this is the test server');
   const { name, email, password, school } = req.body;
   if (!email || !name || !password || !school) {
     return res.status(422).json({ error: 'please add all the field' });
