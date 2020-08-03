@@ -2,15 +2,12 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const Student = require('../../models/Student');
-const {
-  takeSubject,
-  completeSubject,
-} = require('../../services/StudentService');
 
 // @route    Get api/takeSubject
 // @desc     student taken a suject
 // @access   Private (add require login as middlware)
-router.get('takeSuject/:studentId/:subjectId', async (req, res) => {
+router.get('student/:studentId/:subjectId', async (req, res) => {
+  return res.json(req.param.studentId);
   try {
     const takesubject = takeSubject(req.params.studentId, req.params.subjectId);
     return res.status(201).json({ takesubject });

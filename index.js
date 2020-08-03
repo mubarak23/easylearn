@@ -24,6 +24,8 @@ app.get('/', function () {
 //app.use('/api/subject', require('./routes/api/subject'));
 app.use(express.json());
 app.use(require('./routes/api/subject'));
+app.use(require('./routes/api/student'));
+app.use(require('./routes/api/admin'));
 
 //port selection
 const PORT = process.env.PORT || 5000;

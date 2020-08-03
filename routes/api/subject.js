@@ -35,7 +35,7 @@ router.post('/subject', async (req, res) => {
 // @desc     Fetch all Subject
 // @access   Private
 router.get('/subject', async (req, res) => {
-  return res.json('this is the first point');
+  //return res.json('this is the first point');
   try {
     const allSubjects = Subject.find()
       .then((subjects) => {
@@ -57,6 +57,7 @@ router.get('/subject', async (req, res) => {
 // @access   Private
 router.put('/subject/:id', async (req, res) => {
   const subjectId = req.params.id;
+  // return res.json(subjectId);
   const subject_data = req.body;
   try {
     const updatesubject = await updateSubjects(subject_data, subjectId);
