@@ -37,15 +37,9 @@ router.post('/subject', async (req, res) => {
 router.get('/subject', async (req, res) => {
   //return res.json('this is the first point');
   try {
-    const allSubjects = Subject.find()
-      .then((subjects) => {
-        return subjects;
-      })
-      .catch((err) => {
-        console.log(err);
-        return json({ err });
-      });
-    return res.status(200).json({ allSubjects });
+    const allsubject = await Subject.find();
+
+    return res.status(200).json({ allsubject });
   } catch (err) {
     console.log(err);
     return res.status(500).send('internal server error');
@@ -60,7 +54,11 @@ router.put('/subject/:id', async (req, res) => {
   // return res.json(subjectId);
   const subject_data = req.body;
   try {
-    const updatesubject = await updateSubjects(subject_data, subjectId);
+    const update_subject = await Subject.findOneAndUpdate(
+      { subjectId },
+      subject_data
+    );
+    return res.status(500).send({ update_subject });
   } catch (err) {
     console.log(err);
     return res.status(500).send('internal server error');
