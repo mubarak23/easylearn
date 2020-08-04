@@ -51,14 +51,16 @@ router.get('/subject', async (req, res) => {
 // @access   Private
 router.put('/subject/:id', async (req, res) => {
   const subjectId = req.params.id;
-  // return res.json(subjectId);
+  res.json(subjectId);
   const subject_data = req.body;
   try {
-    const update_subject = await Subject.findOneAndUpdate(
-      { subjectId },
-      subject_data
-    );
-    return res.status(500).send({ update_subject });
+    const update_subject = await Subject.findOne({ _id: subjectId });
+    (update_subject.name = subject_data.name),
+      (update_subject.content = subject_data.content),
+      (update_subject.video_url = subject_data.video_url),
+      (update_subject.other_url = subject_data.other_url);
+    const update = await update_subject.save();
+    return res.status(500).send({ update });
   } catch (err) {
     console.log(err);
     return res.status(500).send('internal server error');
