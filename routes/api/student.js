@@ -36,20 +36,15 @@ router.get('/completeSuject/:studentId/:subjectId', async (req, res) => {
 // @route    Get api/student signup
 // @desc     complete a suject
 // @access   Public
-router.post('/signup', async (req, res) => {
-  return res.json('this is the test server');
+router.post('/student/signup', async (req, res) => {
   const { name, email, password, school } = req.body;
+
   if (!email || !name || !password || !school) {
     return res.status(422).json({ error: 'please add all the field' });
   }
   //check user exists
+  //return email;
   try {
-    let existsUser = Student.findOne({ email });
-    if (existsUser) {
-      return res
-        .status(400)
-        .json({ message: 'User this email address already exists' });
-    }
     const newStudent = new Student({
       name,
       email,
@@ -69,10 +64,12 @@ router.post('/signup', async (req, res) => {
 // @route    Post api/signin
 // @desc     complete a suject
 // @access   Public
-router.post('/signin', async (req, res) => {
+router.post('/student/signin', async (req, res) => {
+  //return res.json(req.body);
   const { email, password } = req.body;
   try {
     let existsUser = Student.findOne({ email });
+    
     if (existsUser) {
       return res.status(400).json({ message: 'email or password is incorect' });
     }
