@@ -61,15 +61,31 @@ router.post('/student/signup', async (req, res) => {
   }
 });
 
+router.post('/student/signin',  (req, res) => {
+  const { email, password } = req.body;
+  Student.find({ email: email }, function(error, student){
+      return student
+    })
+});
+
 // @route    Post api/signin
 // @desc     complete a suject
 // @access   Public
-router.post('/student/signin', async (req, res) => {
+router.post('/student/signnnin',  async (req, res) => {
   //return res.json(req.body);
+
   const { email, password } = req.body;
+  
+  //let existsUser = Student.find({ email: email });
+  Student.find({ email: email }, function(error, student){
+      return student
+    })
+  return existsUser
   try {
-    let existsUser = Student.findOne({ email });
-    
+     Student.find({ email }, function(error, student){
+      return student
+    });
+   
     if (existsUser) {
       return res.status(400).json({ message: 'email or password is incorect' });
     }
