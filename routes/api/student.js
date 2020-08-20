@@ -1,5 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const router = express.Router();
 const Student = require('../../models/Student');
 
@@ -54,14 +56,14 @@ router.post('/student/signup', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     newStudent.password = await bcrypt.hash(password, salt);
     await newStudent.save();
-    res.json({ message: 'saved successfully' });
+   return  res.json({ message: 'saved successfully', data: newStudent });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
 });
 
-router.post('/student/signin',  (req, res) => {
+router.post('/student/testsignin',  (req, res) => {
   const { email, password } = req.body;
   Student.find({ email: email }, function(error, student){
       return student
@@ -71,31 +73,36 @@ router.post('/student/signin',  (req, res) => {
 // @route    Post api/signin
 // @desc     complete a suject
 // @access   Public
-router.post('/student/signnnin',  async (req, res) => {
+router.post('/student/signin',  async (req, res) => {
   //return res.json(req.body);
 
-  const { email, password } = req.body;
+  const { email, password, id } = req.body;
   
   //let existsUser = Student.find({ email: email });
-  Student.find({ email: email }, function(error, student){
-      return student
-    })
-  return existsUser
+  
+  //return existsUser
   try {
-     Student.find({ email }, function(error, student){
-      return student
-    });
-   
-    if (existsUser) {
-      return res.status(400).json({ message: 'email or password is incorect' });
-    }
-    const isMatch = await bcrypt.compare(password, existsUser.password);
+     
+    let user = await Student.findOne({ email });
+
+      if (!user) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+      }
+
+     //const existsUser = await Student.findById(id)
+     //return existsUser
+    //if (existsUser) {
+      //return res.status(400).json({ message: 'email or why password is incorect' });
+    //}
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
     const payload = {
       user: {
-        id: existsUser.id,
+        id: user.id,
       },
     };
 
