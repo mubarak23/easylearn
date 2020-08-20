@@ -76,16 +76,14 @@ router.post('/student/testsignin',  (req, res) => {
 router.post('/student/signin',  async (req, res) => {
   //return res.json(req.body);
 
-  const { email, password, id } = req.body;
+  const { email, password } = req.body;
   
-  //let existsUser = Student.find({ email: email });
   
-  //return existsUser
   try {
      
-    let user = await Student.findOne({ email });
+    let student = await Student.findOne({ email });
 
-      if (!user) {
+      if (!student) {
         return res
           .status(400)
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
@@ -96,13 +94,14 @@ router.post('/student/signin',  async (req, res) => {
     //if (existsUser) {
       //return res.status(400).json({ message: 'email or why password is incorect' });
     //}
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, student.password);
     if (!isMatch) {
       return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
     const payload = {
       user: {
-        id: user.id,
+        id: student.id,
+        email: student.email
       },
     };
 
