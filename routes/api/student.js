@@ -63,12 +63,7 @@ router.post('/student/signup', async (req, res) => {
   }
 });
 
-router.post('/student/testsignin',  (req, res) => {
-  const { email, password } = req.body;
-  Student.find({ email: email }, function(error, student){
-      return student
-    })
-});
+
 
 // @route    Post api/signin
 // @desc     complete a suject
