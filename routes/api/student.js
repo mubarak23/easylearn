@@ -83,12 +83,6 @@ router.post('/student/signin',  async (req, res) => {
           .status(400)
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
-
-     //const existsUser = await Student.findById(id)
-     //return existsUser
-    //if (existsUser) {
-      //return res.status(400).json({ message: 'email or why password is incorect' });
-    //}
     const isMatch = await bcrypt.compare(password, student.password);
     if (!isMatch) {
       return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });

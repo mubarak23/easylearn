@@ -16,6 +16,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jwt": "^5.3.3",
-    "mongoose": "^5.9.19"
+    "materialize-css": "^1.0.0",
+    "mongoose": "^5.9.19",
+    "react-router-dom": "^5.2.0"
   }
 }
