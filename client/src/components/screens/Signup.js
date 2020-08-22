@@ -10,6 +10,29 @@ const Signup = () => {
   const [email, SetEmail] = useState('');
   const [school, setSchool] = useState('');
 
+  const postSignup = () => {
+    fetch('/signup', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        school,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        history.push('/signin');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <dvi className='mycard'>
       <div className='card auth-card'>
@@ -38,7 +61,10 @@ const Signup = () => {
           value={school}
           onChange={(e) => setSchool(e.target.value)}
         />
-        <button className='btn waves-effect waves-light #64b5f6 blue darken-1'>
+        <button
+          onClick={() => postSignup()}
+          className='btn waves-effect waves-light #64b5f6 blue darken-1'
+        >
           Signup
         </button>
         <h5>
