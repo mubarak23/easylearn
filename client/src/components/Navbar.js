@@ -6,7 +6,7 @@ const NavBar = () => {
     <nav>
       <div className='nav-wrapper'>
         <Link to='/signin' className='brand-logo left'>
-          InternLike
+          EasyLearn
         </Link>
         <ul id='nav-mobile' className='right'>
           <li key='5'>
