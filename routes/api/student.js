@@ -94,7 +94,7 @@ router.post('/student/signin', async (req, res) => {
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        return res.json({ token });
+        return res.json({ token, student });
       }
     );
   } catch (err) {

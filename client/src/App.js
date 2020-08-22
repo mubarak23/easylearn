@@ -17,9 +17,10 @@ const Routing = () => {
   const { state, dispatch } = useContext(studentContext);
 
   useEffect(() => {
-    const studenttoken = JSON.parse(localStorage.getItem('token'));
-    if (studenttoken) {
-      dispatch({ type: 'STUDENT', payload: studenttoken });
+    const student = localStorage.getItem('stuent');
+    console.log(student);
+    if (student) {
+      dispatch({ type: 'STUDENT', payload: student });
     } else {
       history.push('/signin');
     }
@@ -35,6 +36,9 @@ const Routing = () => {
       </Route>
       <Route path='/signin'>
         <Signin />
+      </Route>
+      <Route path='/home'>
+        <Home />
       </Route>
     </Switch>
   );

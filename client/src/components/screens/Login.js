@@ -23,10 +23,10 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.student);
         localStorage.setItem('token', data.token);
-        localStorage.setItem('sudent', JSON.stringify(data.token));
-        dispatch({ type: 'STUDENT', payload: data });
+        localStorage.setItem('student', JSON.stringify(data.student));
+        dispatch({ type: 'STUDENT', payload: data.student });
         M.toast({
           html: 'Signin Sucessfully',
           classes: '#43a047 green darken-1',
