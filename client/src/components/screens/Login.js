@@ -9,7 +9,7 @@ const Login = () => {
   const [email, SetEmail] = useState('');
 
   const postSignin = () => {
-    fetch('/login', {
+    fetch('/student/signin', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ const Login = () => {
         password,
       }),
     })
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         history.push('/home');
@@ -41,7 +41,10 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className='btn waves-effect waves-light #64b5f6 blue darken-1'>
+        <button
+          onClick={() => postSignin()}
+          className='btn waves-effect waves-light #64b5f6 blue darken-1'
+        >
           Signin
         </button>
         <h5>

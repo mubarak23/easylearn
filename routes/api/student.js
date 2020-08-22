@@ -56,33 +56,27 @@ router.post('/student/signup', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     newStudent.password = await bcrypt.hash(password, salt);
     await newStudent.save();
-   return  res.json({ message: 'saved successfully', data: newStudent });
+    return res.json({ message: 'saved successfully', data: newStudent });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
 });
 
-
-
 // @route    Post api/signin
 // @desc     complete a suject
 // @access   Public
-router.post('/student/signin',  async (req, res) => {
+router.post('/student/signin', async (req, res) => {
   //return res.json(req.body);
 
   const { email, password } = req.body;
-  
-  
+
   try {
-     
     let student = await Student.findOne({ email });
 
-      if (!student) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
-      }
+    if (!student) {
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+    }
     const isMatch = await bcrypt.compare(password, student.password);
     if (!isMatch) {
       return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
@@ -90,7 +84,7 @@ router.post('/student/signin',  async (req, res) => {
     const payload = {
       user: {
         id: student.id,
-        email: student.email
+        email: student.email,
       },
     };
 
@@ -100,7 +94,7 @@ router.post('/student/signin',  async (req, res) => {
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        return res.json({ token });
       }
     );
   } catch (err) {
