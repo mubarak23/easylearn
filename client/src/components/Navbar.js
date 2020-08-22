@@ -12,11 +12,10 @@ const NavBar = () => {
           <li key='5'>
             <Link to='/signin'>Signin</Link>
           </li>
-          ,
+
           <li key='6'>
             <Link to='/signup'>Signup</Link>
           </li>
-          ,
         </ul>
       </div>
     </nav>

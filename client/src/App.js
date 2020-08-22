@@ -13,7 +13,7 @@ const Routing = () => {
         <Singup />
       </Route>
       <Route path='/signup'>
-        <Signin />
+        <Singup />
       </Route>
       <Route path='/signin'>
         <Signin />
