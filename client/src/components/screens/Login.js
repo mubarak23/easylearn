@@ -4,12 +4,43 @@ import M from 'materialize-css';
 import '../../App.css';
 
 const Login = () => {
+  const history = useHistory();
+  const [password, setPassword] = useState('');
+  const [email, SetEmail] = useState('');
+
+  const postSignin = () => {
+    fetch('/login', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json)
+      .then((data) => {
+        console.log(data);
+        history.push('/home');
+      });
+  };
   return (
     <dvi className='mycard'>
       <div className='card auth-card'>
         <h3> Sign In</h3>
-        <input type='text' placeholder='Eamil' />
-        <input type='password' placeholder='Password' />
+        <input
+          type='text'
+          placeholder='Eamil'
+          value={email}
+          onChange={(e) => SetEmail(e.target.value)}
+        />
+        <input
+          type='password'
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button className='btn waves-effect waves-light #64b5f6 blue darken-1'>
           Signin
         </button>

@@ -11,7 +11,7 @@ const Signup = () => {
   const [school, setSchool] = useState('');
 
   const postSignup = () => {
-    fetch('/signup', {
+    fetch('http://localhost:5000/student/signup', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        history.push('/signin');
+        history.push('student/signup');
       })
       .catch((err) => {
         console.log(err);
