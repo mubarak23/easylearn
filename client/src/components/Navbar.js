@@ -16,7 +16,7 @@ const NavBar = () => {
           <li key='6'>
             <Link to='/signup'>Signup</Link>
           </li>
-          <li key='6'>
+          <li key='7'>
             <Link to='/addsubject'>Add Subject</Link>
           </li>
         </ul>

@@ -14,15 +14,12 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        setData(result.posts);
-        console.log(result.posts);
+        setData(result.data);
+        console.log(result.data);
       });
   }, []);
   return (
     <div className='home'>
-      {data.map((item) => {
-        return { item };
-      })}
       <div className='card  home-card'>
         <h5 style={{ padding: '5px' }}>
           <Link to='/profile'>Subject I</Link>
@@ -38,13 +35,14 @@ const Home = () => {
         </div>
         <div className='card-content'>
           <div>Subject I Subject I Subject I Subject I</div>
-          <Link>Read More</Link>
+          <Link to='/home'>Read More</Link>
           <div>
             <i className='material-icons'>favorite</i>
-            Taken By: 20
+            Taken By: 15
           </div>
         </div>
       </div>
+
       <div className='card  home-card'>
         <h5 style={{ padding: '5px' }}>
           <Link to='/profile'>Subject II</Link>
@@ -60,13 +58,14 @@ const Home = () => {
         </div>
         <div className='card-content'>
           <div>Subject I Subject I Subject I Subject I</div>
-          <Link>Read More</Link>
+          <Link to='/home'>Read More</Link>
           <div>
             <i className='material-icons'>favorite</i>
-            Taken By: 15
+            Taken By: 20
           </div>
         </div>
       </div>
+
       <div className='card  home-card'>
         <h5 style={{ padding: '5px' }}>
           <Link to='/profile'>Subject III</Link>
@@ -82,10 +81,10 @@ const Home = () => {
         </div>
         <div className='card-content'>
           <div>Subject I Subject I Subject I Subject I</div>
-          <Link>Read More</Link>
+          <Link to='/home'>Read More</Link>
           <div>
             <i className='material-icons'>favorite</i>
-            Taken By: 10
+            Taken By: 15
           </div>
         </div>
       </div>

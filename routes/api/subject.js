@@ -39,7 +39,7 @@ router.get('/subject', async (req, res) => {
   try {
     const allsubject = await Subject.find();
 
-    return res.status(200).json({ allsubject });
+    return res.status(200).json({ data: allsubject });
   } catch (err) {
     console.log(err);
     return res.status(500).send('internal server error');
