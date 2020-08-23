@@ -10,30 +10,27 @@ const AddSubject = () => {
   const [videoUrl, setVideoUrl] = useState('');
 
   const postSubject = () => {
-    fetch('/addsubject', {
+    fetch('/subject', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name,
-        content,
-        imageUrl,
-        videoUrl,
+        name: name,
+        content: content,
+        image_url: imageUrl,
+        video_url: videoUrl,
+        other_url: videoUrl,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.error) {
-          M.toast({ html: data.error, classes: '#c62828 red darken-3' });
-        } else {
-          M.toast({
-            html: 'Subject Added Successfully',
-            classes: '#43a047 green darken-1',
-          });
-          history.push('/home');
-        }
+        M.toast({
+          html: 'Subject Added Successfully',
+          classes: '#43a047 green darken-1',
+        });
+        history.push('/home');
       });
   };
 
@@ -57,7 +54,7 @@ const AddSubject = () => {
       />
       <textarea
         id='textarea1'
-        class='materialize-textarea'
+        className='materialize-textarea'
         rows='60px'
         column='40px'
         type='text'
@@ -81,7 +78,7 @@ const AddSubject = () => {
         onClick={() => postSubject()}
         className='btn waves-effect waves-light #64b5f6 blue darken-1'
       >
-        Submit Post
+        Add Subject
       </button>
     </div>
   );

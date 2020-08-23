@@ -4,8 +4,25 @@ import avatar from '../assets/avatar.png';
 //import { userContext } from '../../App';
 
 const Home = () => {
+  const [data, setData] = useState([]);
+  //const { state, dispatch } = useContext(userContext);
+  useEffect(() => {
+    fetch('/subject', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setData(result.posts);
+        console.log(result.posts);
+      });
+  }, []);
   return (
     <div className='home'>
+      {data.map((item) => {
+        return { item };
+      })}
       <div className='card  home-card'>
         <h5 style={{ padding: '5px' }}>
           <Link to='/profile'>Subject I</Link>
