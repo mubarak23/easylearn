@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import M from 'materialize-css';
 
 const AddSubject = () => {
   const history = useHistory();
@@ -31,7 +32,7 @@ const AddSubject = () => {
             html: 'Subject Added Successfully',
             classes: '#43a047 green darken-1',
           });
-          history.push('/');
+          history.push('/home');
         }
       });
   };
@@ -47,6 +48,7 @@ const AddSubject = () => {
         marginTop: '30px',
       }}
     >
+      <h3>Add Subject</h3>
       <input
         type='text'
         value={name}
@@ -54,23 +56,25 @@ const AddSubject = () => {
         placeholder='Name'
       />
       <textarea
-        rows='30px'
+        id='textarea1'
+        class='materialize-textarea'
+        rows='60px'
         column='40px'
         type='text'
         value={content}
-        onChange={(e) => SetBody(e.target.value)}
+        onChange={(e) => SetContent(e.target.value)}
         placeholder='Content'
       />
       <input
         type='text'
         value={imageUrl}
-        onChange={(e) => SetName(e.target.value)}
+        onChange={(e) => setImageUrl(e.target.value)}
         placeholder='Image URL'
       />
       <input
         type='text'
         value={videoUrl}
-        onChange={(e) => SetName(e.target.value)}
+        onChange={(e) => setVideoUrl(e.target.value)}
         placeholder='Video URL'
       />
       <button

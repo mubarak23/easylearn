@@ -16,6 +16,9 @@ const NavBar = () => {
           <li key='6'>
             <Link to='/signup'>Signup</Link>
           </li>
+          <li key='6'>
+            <Link to='/addsubject'>Add Subject</Link>
+          </li>
         </ul>
       </div>
     </nav>

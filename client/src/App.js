@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './components/screens/Home';
 import Signin from './components/screens/Login';
 import Singup from './components/screens/Signup';
+import AddSubject from './components/screens/AddSubject';
 import {
   reducer,
   intialState,
@@ -39,6 +40,9 @@ const Routing = () => {
       </Route>
       <Route path='/home'>
         <Home />
+      </Route>
+      <Route path='/addsubject'>
+        <AddSubject />
       </Route>
     </Switch>
   );
