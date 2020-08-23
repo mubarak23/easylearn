@@ -11,7 +11,65 @@ const Home = () => {
           <Link to='/profile'>Subject I</Link>
         </h5>
         <div className='card-image'>
-          <img src={avatar} />
+          <img
+            style={{
+              height: '100px',
+              width: '100px',
+            }}
+            src={avatar}
+          />
+        </div>
+        <div className='card-content'>
+          <div>Subject I Subject I Subject I Subject I</div>
+          <Link>Read More</Link>
+          <div>
+            <i className='material-icons'>favorite</i>
+            Taken By: 20
+          </div>
+        </div>
+      </div>
+      <div className='card  home-card'>
+        <h5 style={{ padding: '5px' }}>
+          <Link to='/profile'>Subject II</Link>
+        </h5>
+        <div className='card-image'>
+          <img
+            style={{
+              height: '100px',
+              width: '100px',
+            }}
+            src={avatar}
+          />
+        </div>
+        <div className='card-content'>
+          <div>Subject I Subject I Subject I Subject I</div>
+          <Link>Read More</Link>
+          <div>
+            <i className='material-icons'>favorite</i>
+            Taken By: 15
+          </div>
+        </div>
+      </div>
+      <div className='card  home-card'>
+        <h5 style={{ padding: '5px' }}>
+          <Link to='/profile'>Subject III</Link>
+        </h5>
+        <div className='card-image'>
+          <img
+            style={{
+              height: '100px',
+              width: '100px',
+            }}
+            src={avatar}
+          />
+        </div>
+        <div className='card-content'>
+          <div>Subject I Subject I Subject I Subject I</div>
+          <Link>Read More</Link>
+          <div>
+            <i className='material-icons'>favorite</i>
+            Taken By: 10
+          </div>
         </div>
       </div>
     </div>
