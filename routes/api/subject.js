@@ -34,16 +34,14 @@ router.post('/subject', async (req, res) => {
 // @route    Get api/subject
 // @desc     Fetch all Subject
 // @access   Private
-router.get('/subject', async (req, res) => {
+router.get('/subject', (req, res) => {
   //return res.json('this is the first point');
-  try {
-    const allsubject = await Subject.find();
-
-    return res.status(200).json({ data: allsubject });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send('internal server error');
-  }
+    Subject.find().then(subjects =>{
+      return res.json({ subjects });
+    }).catch((err) => {
+      console.log(err);
+    });
+  
 });
 
 // @route    PUT api/subject

@@ -14,15 +14,17 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        setData(result.data);
-        console.log(result.data);
+        setData(result.subjects);
+        console.log(result.subjects);
       });
   }, []);
   return (
     <div className='home'>
-      <div className='card  home-card'>
+    {data.map((item) => {
+      return (
+          <div className='card  home-card' key={item._id} >
         <h5 style={{ padding: '5px' }}>
-          <Link to='/profile'>Subject I</Link>
+          <Link to='/profile'>{ item.name}</Link>
         </h5>
         <div className='card-image'>
           <img
@@ -30,64 +32,24 @@ const Home = () => {
               height: '100px',
               width: '100px',
             }}
-            src={avatar}
+            src={item.image_url}
           />
         </div>
         <div className='card-content'>
-          <div>Subject I Subject I Subject I Subject I</div>
+          <div>{item.content}</div>
           <Link to='/home'>Read More</Link>
           <div>
             <i className='material-icons'>favorite</i>
-            Taken By: 15
+            Taken By: {item.students}
           </div>
         </div>
       </div>
+        )
+      
 
-      <div className='card  home-card'>
-        <h5 style={{ padding: '5px' }}>
-          <Link to='/profile'>Subject II</Link>
-        </h5>
-        <div className='card-image'>
-          <img
-            style={{
-              height: '100px',
-              width: '100px',
-            }}
-            src={avatar}
-          />
-        </div>
-        <div className='card-content'>
-          <div>Subject I Subject I Subject I Subject I</div>
-          <Link to='/home'>Read More</Link>
-          <div>
-            <i className='material-icons'>favorite</i>
-            Taken By: 20
-          </div>
-        </div>
-      </div>
+    })}
 
-      <div className='card  home-card'>
-        <h5 style={{ padding: '5px' }}>
-          <Link to='/profile'>Subject III</Link>
-        </h5>
-        <div className='card-image'>
-          <img
-            style={{
-              height: '100px',
-              width: '100px',
-            }}
-            src={avatar}
-          />
-        </div>
-        <div className='card-content'>
-          <div>Subject I Subject I Subject I Subject I</div>
-          <Link to='/home'>Read More</Link>
-          <div>
-            <i className='material-icons'>favorite</i>
-            Taken By: 15
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };
