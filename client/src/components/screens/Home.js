@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/avatar.png';
-//import { userContext } from '../../App';
+import { studentContext } from '../../App';
 
 const Home = () => {
   const [data, setData] = useState([]);
-  //const { state, dispatch } = useContext(userContext);
+  const { state, dispatch } = useContext(studentContext);
   useEffect(() => {
     fetch('/subject', {
       headers: {
@@ -18,38 +18,63 @@ const Home = () => {
         console.log(result.subjects);
       });
   }, []);
+
+  const takeSubject = () => {
+    console.log(state._id);
+    fetch('subject/take', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: state._id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.student);
+      });
+  };
   return (
     <div className='home'>
-    {data.map((item) => {
-      return (
-          <div className='card  home-card' key={item._id} >
-        <h5 style={{ padding: '5px' }}>
-          <Link to='/profile'>{ item.name}</Link>
-        </h5>
-        <div className='card-image'>
-          <img
-            style={{
-              height: '100px',
-              width: '100px',
-            }}
-            src={item.image_url}
-          />
-        </div>
-        <div className='card-content'>
-          <div>{item.content}</div>
-          <Link to='/home'>Read More</Link>
-          <div>
-            <i className='material-icons'>favorite</i>
-            Taken By: {item.students}
+      {data.map((item) => {
+        return (
+          <div className='card  home-card' key={item._id}>
+            <h5 style={{ padding: '5px' }}>
+              <Link to='/profile'>{item.name}</Link>
+            </h5>
+            <div className='card-image'>
+              <img
+                style={{
+                  height: '100px',
+                  width: '100px',
+                }}
+                src={item.image_url}
+              />
+            </div>
+            <div className='card-content'>
+              <div>{item.content}</div>
+              <Link to='/home'>Read More</Link>
+
+              <div>
+                <i className='material-icons'>favorite</i>
+                Taken By: {item.students}
+              </div>
+              <div>
+                <button
+                  style={{
+                    margin: '5px',
+                  }}
+                  className='btn waves-effect waves-light #64b5f6 blue darken-1'
+                  onClick={() => takeSubject()}
+                >
+                  Take Subject
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-        )
-      
-
-    })}
-
-      
+        );
+      })}
     </div>
   );
 };
