@@ -19,20 +19,24 @@ const Home = () => {
       });
   }, []);
 
-  const takeSubject = () => {
+  const takeSubject = (id) => {
     console.log(state._id);
-    fetch('subject/take', {
-      method: 'post',
+    fetch(`/take/subject/:${state._id}`, {
+      method: 'put',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({
-        userId: state._id,
+        studentId: id,
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data.student);
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   return (
@@ -66,7 +70,7 @@ const Home = () => {
                     margin: '5px',
                   }}
                   className='btn waves-effect waves-light #64b5f6 blue darken-1'
-                  onClick={() => takeSubject()}
+                  onClick={() => takeSubject(item._id)}
                 >
                   Take Subject
                 </button>

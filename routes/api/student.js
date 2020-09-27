@@ -103,4 +103,35 @@ router.post('/student/signin', async (req, res) => {
   }
 });
 
+//requireLogin
+router.put('/take/subject/:studentId', (req, res) => {
+  Student.findByIdAndUpdate(
+    req.params.studentId,
+    {
+      $push: { subjects: req.body.subjectId },
+    },
+    { new: true },
+    (err, result) => {
+      if (err) {
+        return res
+          .status(422)
+          .json({ error: err, message: 'This is first error' });
+      }
+      Student.findByIdAndUpdate(
+        req.user._id,
+        {
+          $push: { subjects: req.body.subjectId },
+        },
+        { new: true }
+      )
+        .then((result) => {
+          return res.json({ result });
+        })
+        .catch((err) => {
+          return res.status(422).json({ error: err });
+        });
+    }
+  );
+});
+
 module.exports = router;

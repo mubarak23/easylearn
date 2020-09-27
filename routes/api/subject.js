@@ -36,12 +36,13 @@ router.post('/subject', async (req, res) => {
 // @access   Private
 router.get('/subject', (req, res) => {
   //return res.json('this is the first point');
-    Subject.find().then(subjects =>{
+  Subject.find()
+    .then((subjects) => {
       return res.json({ subjects });
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
     });
-  
 });
 
 // @route    PUT api/subject
@@ -58,11 +59,13 @@ router.put('/subject/:id', async (req, res) => {
       (update_subject.video_url = subject_data.video_url),
       (update_subject.other_url = subject_data.other_url);
     const update = await update_subject.save();
-    return res.status(500).send({ update });
+    return res.status(200).send({ update });
   } catch (err) {
     console.log(err);
     return res.status(500).send('internal server error');
   }
 });
+
+
 
 module.exports = router;
